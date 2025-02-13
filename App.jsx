@@ -9,18 +9,23 @@ import HomeScreen from './Screens/HomeScreen'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import CartScreen from './Screens/CartScreen'
 
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 import { store } from './redux/cartStore'
+import DishAction from './Screens/DishAction'
+import Login from './Screens/Login'
+// import { UseDispatch } from 'react-redux'
+// import { fetchDishes } from './redux/cartSlice'
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  
   return (
     <GestureHandlerRootView>
       <Provider store={store}>
-
+        
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Authenticate'>
+          <Stack.Navigator initialRouteName='Login'>
             <Stack.Screen
               name='Authenticate'
               component={Authenticate}
@@ -46,6 +51,20 @@ const App = () => {
               name='CartScreen'
               component={CartScreen}
 
+            />
+            <Stack.Screen
+              name='DishAction'
+              component={DishAction}
+              options={{
+                headerShown: false
+              }}
+            />
+            <Stack.Screen
+              name='Login'
+              component={Login}
+              options={{
+                headerShown: false
+              }}
             />
           </Stack.Navigator>
         </NavigationContainer>

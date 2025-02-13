@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const cartSlice = createSlice({
-    name:'dishes',
+    name:'cart',
     initialState:[],
     reducers:{
         addToCart:(state,action)=>{
@@ -19,8 +20,9 @@ const cartSlice = createSlice({
                 state.splice(index,1);
             }
         },
-        clearCart:(state)=>{
+        clearCart:()=>{
             return [];
+            
         }
     }
 });
