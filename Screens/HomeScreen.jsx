@@ -1,9 +1,5 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Modal } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Modal, Dimensions } from 'react-native'
 import React, { useCallback } from 'react'
-// import BottomSheet from './BottomSheet'
-// import { GestureHandlerRootView } from 'react-native-gesture-handler'
-
-// import { dishes } from '../restauarantData/dishes'
 import DishCard from '../components/DishCard'
 import HomeBanner from '../components/HomeBanner'
 import { useSelector } from 'react-redux'
@@ -12,77 +8,74 @@ import { clearCart } from '../redux/cartSlice'
 import { useFocusEffect } from '@react-navigation/native'
 import { fetchDishes } from '../redux/dishSlice'
 
-export default function HomeScreen({ navigation }) {
-  const userType = useSelector((state)=>state.user.userType);
-  const dispatch = useDispatch();
-  
-  const dishes = useSelector((state)=>state.dishes);
-  console.log("alldishes from homescreen:",dishes);
-  
-  // const dishes = mydata;
-  
-  const totalItems = useSelector((state) => state.cart.length);
-  const [modalVisible, setModalVisible] = React.useState(false);
-  
-  React.useEffect(()=>{
-    dispatch(fetchDishes());
-  },[dispatch])
-  
 
-  useFocusEffect(useCallback(()=>{
+export default function HomeScreen({ navigation }) {
+  const dispatch = useDispatch();
+  const userType = useSelector((state) => state.user.userType);
+  const dishes = useSelector((state) => state.dishes);
+  const totalItems = useSelector((state) => state.cart.length);
+
+  const [modalVisible, setModalVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    dispatch(fetchDishes());
+  }, [dispatch])
+
+  useFocusEffect(useCallback(() => {
     setModalVisible(false);
-  },[]));
+  }, []));
 
   return (
-    // <GestureHandlerRootView>
-    <ScrollView>
+    <ScrollView
+      stickyHeaderIndices={[1]}
+      showsVerticalScrollIndicator={false}
+    >
+      <HomeBanner />
+
       <View style={styles.outerContainer}>
-        <HomeBanner />
-
-        {userType == 'user' && 
-        <View style={styles.cartIconContainer}>
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
-            <Image source={require('../images/shopping-bag-green.png')} style={{ height: 25, width: 25 }} />
-          </TouchableOpacity>
-          <Text style={{ fontSize: 16, color: 'green' }}>{totalItems}</Text>
-        </View>
-        }
-
-        <View style={styles.dishesContainer}>
-          {
-            dishes.map((item) => {
-              return (
-                <DishCard key={item.id} dish={item} />
-              )
-            })
+        <View style={styles.headingAndIconContainer}>
+          <Text style={styles.heading}>{userType == 'user' ? "Southern Delicacies":"Food Menu"}</Text>
+          {userType == 'user' ?
+            <View style={styles.cartIconContainer}>
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Image source={require('../images/shopping-bag-yellow.png')} style={{ height: 20, width: 20 }} />
+              </TouchableOpacity>
+              <Text style={{ fontSize: 16, color: 'white' }}>{totalItems}</Text>
+            </View>:
+            <TouchableOpacity style={styles.addDishIconContainer} activeOpacity={0.7} onPress={() => navigation.navigate('DishAction', { action: 'add' })}>
+              <Text>+ Add Dish</Text>
+            </TouchableOpacity>
           }
         </View>
       </View>
-      
-      {userType == 'admin' && 
-        <TouchableOpacity style={styles.addDishIconContainer} onPress={()=>navigation.navigate('DishAction',{action:'add'})}>
-          <Image source={require('../images/add.png')} style={styles.addDishIcon}/>
-        </TouchableOpacity>
-      }
+
+      <View style={styles.dishesContainer}>
+        {dishes.map((item) => {
+            return (
+              <DishCard key={item.id} dish={item} />
+            )
+          })
+        }
+      </View>
 
       <Modal
         visible={modalVisible}
         animationType='slide'
         transparent={true}
-      > 
-        <TouchableOpacity style={styles.modalOuterContainer} onPress={()=>setModalVisible(false)} activeOpacity={1}>
+      >
+        <TouchableOpacity style={styles.modalOuterContainer} onPress={() => setModalVisible(false)} activeOpacity={1}>
           <View style={styles.modalInnerContainer}>
-  
+
             <View style={styles.btnContainer}>
 
 
-              <TouchableOpacity onPress={()=>{
+              <TouchableOpacity onPress={() => {
                 dispatch(clearCart());
-                setModalVisible(false);  
+                setModalVisible(false);
               }} style={styles.clearCartBtn}>
                 <View ><Text style={styles.clearCartBtnText}>Clear Cart</Text></View>
               </TouchableOpacity>
-            
+
               <TouchableOpacity onPress={() => navigation.navigate('CartScreen')} style={styles.viewCartBtn}>
                 <Text style={styles.clearCartBtnText}>View Cart </Text>
               </TouchableOpacity>
@@ -90,16 +83,34 @@ export default function HomeScreen({ navigation }) {
           </View>
         </TouchableOpacity>
       </Modal>
-      
+
     </ScrollView>
-    // </GestureHandlerRootView>
   )
 }
 
 const styles = StyleSheet.create({
-  outerContainer: {
-    display: 'flex',
-    flex: 1,
+  outerContainer: {},
+  headingAndIconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // alignItems:'center',
+    // marginTop:10,
+    backgroundColor: 'green',
+    paddingVertical: 8,
+    elevation:5,
+  },
+  heading: {
+    fontSize: 22,
+    fontWeight: 200,
+    marginLeft: 15,
+    // marginTop:10
+    fontFamily: 'sans-serif',
+    letterSpacing: 2,
+    color: '#fcb212',
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    // fontStyle:'italic'
+    // marginTop:5
   },
   cartIconContainer: {
     display: 'flex',
@@ -107,10 +118,11 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     alignItems: 'center',
     marginHorizontal: 12,
-    marginTop: 5
+    // marginTop: 5
+    marginBottom: 3
   },
   dishesContainer: {
-    marginTop: 15
+    marginTop: 5
   },
   modalOuterContainer: {
     backgroundColor: 'rgba(0, 0, 0, 0.53)',
@@ -118,65 +130,71 @@ const styles = StyleSheet.create({
   },
   modalInnerContainer: {
     // width: '80
-    width:'100%',
+    width: '100%',
     backgroundColor: 'white',
     position: 'absolute',
     bottom: 0,
     alignSelf: 'center',
     paddingHorizontal: 10,
-    borderTopLeftRadius:35,
+    paddingVertical:15,
+    borderTopLeftRadius: 15,
     // borderTopLeftRadius:35,
-    borderTopRightRadius:35,
-    elevation:5
+    borderTopRightRadius: 15,
+    elevation: 5
   },
-  btnContainer:{
-    flexDirection:'row',
-    alignItems:'center',
+  btnContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     // marginBottom:15,
-    justifyContent:'space-around',
-    gap:15,
-    paddingHorizontal:10,
-    flex:1,
-    paddingVertical:20
+    justifyContent: 'space-around',
+    gap: 15,
+    paddingHorizontal: 10,
+    flex: 1,
+    paddingVertical: 20
   },
   viewCartBtn: {
-    backgroundColor:'green',
-    paddingHorizontal:30,
-    paddingVertical:8,
-    borderRadius:30,
+    backgroundColor: 'green',
+    paddingHorizontal: 30,
+    paddingVertical: 8,
+    borderRadius: 30,
     // width:300,
-    alignItems:'center'
+    alignItems: 'center'
   },
-  clearCartBtn:{
-    paddingHorizontal:30,
-    paddingVertical:8,
-    backgroundColor:'rgba(201, 3, 3, 0.77)',
-    borderRadius:30,
+  clearCartBtn: {
+    paddingHorizontal: 30,
+    paddingVertical: 8,
+    backgroundColor: 'rgba(201, 3, 3, 0.77)',
+    borderRadius: 30,
     // width:300,
-    alignItems:'center'
+    alignItems: 'center'
 
   },
   clearCartBtnText: {
-    color:'white',
-    fontSize:18
+    color: 'white',
+    fontSize: 18
     // marginHorizontal:15,
 
     // elevation:2
   },
-  addDishIconContainer:{
-    backgroundColor:'white',
-    position:'absolute',
-    right:15,
-    bottom:15,
-    padding:10,
-    borderRadius:'50%',
+  addDishIconContainer: {
+    backgroundColor: '#fcb212',
+    // position: 'absolute',
+    // right: 15,
+    // // top: SCREEN_HEIGHT-70,
+    // bottom: 15,
+    // padding: 10,
+    borderRadius: 10,
+    paddingHorizontal:10,
+    alignItems:'center',
+    justifyContent:'center',
+    marginRight:5,
     // borderWidth:1,
     // borderColor:'gray'
-    elevation:3
+    elevation: 3
 
   },
-  addDishIcon:{
-    height:30,
-    width:30
-  }
+  addDishIcon: {
+    height: 30,
+    width: 30
+  },
 })

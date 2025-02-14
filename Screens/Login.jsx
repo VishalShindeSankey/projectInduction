@@ -4,27 +4,23 @@ import { useDispatch } from 'react-redux';
 import { addUserType } from '../redux/userSlice';
 
 export default function Login({navigation}) {
+    const dispatch = useDispatch();
     const[user,setUser] = React.useState({
         email:'',
         password:''
     });
 
-    const dispatch = useDispatch();
-
     const handleChange = (key,text)=>{
-        setUser({
-            ...user,
-            [key]:text
-        })
+        setUser({...user,[key]:text})
     }
 
     const handleLogin = ()=>{
         if(user.email.length > 0 && user.password.length > 0){
-            if(user.email == "user@gmail.com" && user.password == "12345"){
+            if(user.email.toLowerCase() == "user@gmail.com" && user.password == "12345"){
                 dispatch(addUserType("user"));
                 navigation.navigate('HomeScreen');
             }
-            else if(user.email == "admin@gmail.com" && user.password == "12345"){
+            else if(user.email.toLowerCase() == "admin@gmail.com" && user.password == "12345"){
                 dispatch(addUserType("admin"));
                 navigation.navigate('HomeScreen');
             }
@@ -33,29 +29,65 @@ export default function Login({navigation}) {
         }
     }
   return (
-    <View>
-      <Text>Login</Text>
-      <View>
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
+      <View style={styles.inputContainer}>
         <TextInput
-            placeholder='Email'
-            placeholderTextColor='black'
-            value={user.email}
-            onChangeText={(text)=>handleChange('email',text)}
+          style={styles.input}
+          placeholder='Email'
+          placeholderTextColor='gray'
+          value={user.email}
+          onChangeText={(text) => handleChange('email', text)}
         />
         <TextInput
-            placeholder='Password'
-            placeholderTextColor='black'
-            value={user.password}
-            onChangeText={(text)=>handleChange('password',text)}
-            secureTextEntry
+          style={styles.input}
+          placeholder='Password'
+          placeholderTextColor='gray'
+          value={user.password}
+          onChangeText={(text) => handleChange('password', text)}
+          secureTextEntry
         />
-
-        <TouchableOpacity onPress={()=>handleLogin()}>
-            <Text>Login</Text>
+        <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    color: '#333',
+  },
+  inputContainer: {
+    width: '80%',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    backgroundColor: '#fff',
+    color:'black'
+  },
+  button: {
+    backgroundColor: 'green',
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+});

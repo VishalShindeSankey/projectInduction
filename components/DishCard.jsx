@@ -20,29 +20,27 @@ export default function DishCard(props) {
 
     const addFirstTime = () => {
         const currDish = { ...props.dish, quantity: 1 };
-        console.log(currDish);
         dispatch(addToCart(currDish));
         setIsAdded(true);
-        // setCounter(1);
     }
 
     return (
         <View style={styles.outerContainer}>
+            
             <View style={styles.imgContainer}>
                 <Image
-                    source={{
-                        uri: props.dish.imgUrl
-                    }}
+                    source={{uri: props.dish.imgUrl}}
                     height={160}
                     width={150}
                     style={styles.dishImg}
                 />
             </View>
+
             <View style={styles.dataContainer}>
                 <View style={styles.textData}>
                     <Text style={styles.dishName}>{props.dish.name}</Text>
                     <View style={styles.dishPriceContainer}><Image source={require('../images/rupee.png')} style={styles.rupeeIcon} /><Text style={styles.dishPrice}>{props.dish.price}</Text></View>
-                    <View style={styles.dishRatingContainer}><Image source={require('../images/greenstar.png')} style={styles.ratingIcon} /><Text style={styles.dishRating}>{props.dish.rating}</Text><Text>&#40;{(Math.random() * 100).toFixed(0)}&#41;</Text></View>
+                    <View style={styles.dishRatingContainer}><Image source={require('../images/greenstar.png')} style={styles.ratingIcon} /><Text style={styles.dishRating}>{props.dish.rating}</Text><Text style={{fontSize:12}}>&#40;{(Math.random() * 100).toFixed(0)}&#41;</Text></View>
                     <Text style={styles.dishDesc}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
                 </View>
                 {userType == 'user' ?
@@ -114,8 +112,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     dishName: {
-        fontSize: 18,
-        fontWeight: 'bold'
+        fontSize: 20,
+        fontWeight: 500
     },
     rupeeIcon: {
         height: 20,
@@ -129,7 +127,7 @@ const styles = StyleSheet.create({
     },
     dishPrice: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 400
     },
     dishRatingContainer: {
         fontWeight: 'bold',
