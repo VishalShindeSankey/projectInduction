@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View ,TextInput, TouchableOpacity, Alert} from 'react-native'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux';
 import { addUserType } from '../redux/userSlice';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function Login({navigation}) {
     const dispatch = useDispatch();
@@ -9,6 +10,13 @@ export default function Login({navigation}) {
         email:'',
         password:''
     });
+
+    useFocusEffect(useCallback(()=>{
+        return ()=>{
+          setUser({email:'',password:''})
+        }
+      },[])
+    )
 
     const handleChange = (key,text)=>{
         setUser({...user,[key]:text})
@@ -25,7 +33,7 @@ export default function Login({navigation}) {
                 navigation.navigate('HomeScreen');
             }
         }else{
-            Alert.alert("Fill all fields");
+            Alert.alert("Please fill all fields");
         }
     }
   return (

@@ -1,0 +1,47 @@
+export const cardsData = [
+    {
+        imgUrl:"https://th.bing.com/th/id/R.2c3c72e508680612c814e9d98969b6ff?rik=qYdaYCNHMAUIcg&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f3%2fc%2f2%2f655531.jpg&ehk=x5LDhpVB4Sol7b7BgrMg0aducm9rkyqMxgAhCTJsryc%3d&risl=&pid=ImgRaw&r=0"
+    },
+    {
+        imgUrl:"https://images.hdqwalls.com/wallpapers/sunset-landscape-mountains-clouds-4k-jj.jpg"
+    },
+    {
+        imgUrl:"https://img.freepik.com/premium-photo/banff-national-park-hd-8k-wallpaper-stock-photographic-image_949228-10456.jpg"
+    },
+]
+
+export const doubleCardsData=[
+    {
+        imgUrl:""
+    },
+    {
+        imgUrl:"https://th.bing.com/th/id/R.2c3c72e508680612c814e9d98969b6ff?rik=qYdaYCNHMAUIcg&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f3%2fc%2f2%2f655531.jpg&ehk=x5LDhpVB4Sol7b7BgrMg0aducm9rkyqMxgAhCTJsryc%3d&risl=&pid=ImgRaw&r=0"
+    },
+    {
+        imgUrl:"https://images.hdqwalls.com/wallpapers/sunset-landscape-mountains-clouds-4k-jj.jpg"
+    },
+    {
+        imgUrl:"https://img.freepik.com/premium-photo/banff-national-park-hd-8k-wallpaper-stock-photographic-image_949228-10456.jpg"
+    },
+    {
+        imgUrl:"https://th.bing.com/th/id/R.2c3c72e508680612c814e9d98969b6ff?rik=qYdaYCNHMAUIcg&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f3%2fc%2f2%2f655531.jpg&ehk=x5LDhpVB4Sol7b7BgrMg0aducm9rkyqMxgAhCTJsryc%3d&risl=&pid=ImgRaw&r=0"
+    },
+    {
+        imgUrl:"https://images.hdqwalls.com/wallpapers/sunset-landscape-mountains-clouds-4k-jj.jpg"
+    },
+    {
+        imgUrl:"https://img.freepik.com/premium-photo/banff-national-park-hd-8k-wallpaper-stock-photographic-image_949228-10456.jpg"
+    },
+    {
+        imgUrl:"https://th.bing.com/th/id/R.2c3c72e508680612c814e9d98969b6ff?rik=qYdaYCNHMAUIcg&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f3%2fc%2f2%2f655531.jpg&ehk=x5LDhpVB4Sol7b7BgrMg0aducm9rkyqMxgAhCTJsryc%3d&risl=&pid=ImgRaw&r=0"
+    },
+    {
+        imgUrl:"https://images.hdqwalls.com/wallpapers/sunset-landscape-mountains-clouds-4k-jj.jpg"
+    },
+    {
+        imgUrl:"https://img.freepik.com/premium-photo/banff-national-park-hd-8k-wallpaper-stock-photographic-image_949228-10456.jpg"
+    },
+    {
+        imgUrl:""
+    },
+]

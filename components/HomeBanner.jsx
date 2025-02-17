@@ -13,14 +13,16 @@ export default function HomeBanner() {
         style={styles.bannerImg}
         resizeMode='cover'
       />
-      <View style={styles.userProfile}><Text style={{fontSize:22,fontWeight:500,textAlign:'center',color:'green'}}>{user == 'user' ? "U":"A"}</Text></View>
+      <View style={styles.userProfile}>
+        <Text style={{fontSize:22,fontWeight:500,textAlign:'center',color:'green'}}>{user == 'user' ? "U":"A"}</Text>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
     outerContainer:{
-        width:SCREEN_WIDTH,
+        width:"100%",
         height:300,
         overflow:'hidden',
         

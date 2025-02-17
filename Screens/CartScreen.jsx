@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
   },
   tableContainer: {
     backgroundColor:'white',
-    margin: 25,
+    marginVertical: 20,
+    marginHorizontal:5,
     borderRadius: 15,
     elevation:5
   },
@@ -95,14 +96,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'green',
     paddingHorizontal: 5,
-    paddingVertical: 10,
+    paddingVertical: 15,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15
   },
   headData: {
     flex: 0.2,
     textAlign: 'center',
-    color: 'white'
+    // color: '#fcb212'
+    color:'white'
   },
   headName: {
     flex: 0.3,
@@ -194,20 +196,25 @@ const styles = StyleSheet.create({
   bottomBtnContainer:{
     flexDirection:'row',
     alignSelf:'center',
-    gap:20
-    // width:'100%'
+    // gap:30
+    justifyContent:'space-between',
+    paddingHorizontal:10,
+    width:'100%',
+    marginTop:10
   },
   orderBtn: {
     backgroundColor: 'green',
     borderRadius: 15,
     alignSelf: 'center',
     paddingVertical: 7,
-    paddingHorizontal: 30,
-    elevation: 5
+    paddingHorizontal: 40,
+    
+    // elevation: 1
 
   },
   orderBtnText: {
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize:16
   }
 })
