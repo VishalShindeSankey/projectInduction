@@ -1,22 +1,15 @@
 import { StyleSheet, Text, View ,TextInput, TouchableOpacity, Alert} from 'react-native'
-import React, { useCallback } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addUserType } from '../redux/userSlice';
-import { useFocusEffect } from '@react-navigation/native';
+
 
 export default function Login({navigation}) {
     const dispatch = useDispatch();
-    const[user,setUser] = React.useState({
+    const[user,setUser] = useState({
         email:'',
         password:''
     });
-
-    useFocusEffect(useCallback(()=>{
-        return ()=>{
-          setUser({email:'',password:''})
-        }
-      },[])
-    )
 
     const handleChange = (key,text)=>{
         setUser({...user,[key]:text})
@@ -26,10 +19,12 @@ export default function Login({navigation}) {
         if(user.email.length > 0 && user.password.length > 0){
             if(user.email.toLowerCase() == "user@gmail.com" && user.password == "12345"){
                 dispatch(addUserType("user"));
+                setUser({email:'',password:''});
                 navigation.navigate('HomeScreen');
             }
             else if(user.email.toLowerCase() == "admin@gmail.com" && user.password == "12345"){
                 dispatch(addUserType("admin"));
+                setUser({email:'',password:''})
                 navigation.navigate('HomeScreen');
             }
         }else{

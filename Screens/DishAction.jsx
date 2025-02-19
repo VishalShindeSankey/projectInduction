@@ -1,21 +1,22 @@
 import { StyleSheet, Text, View ,TextInput, TouchableOpacity, Alert, Image} from 'react-native'
-import React from 'react'
+import { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addDish, updateDishById } from '../redux/dishSlice';
 import { useNavigation } from '@react-navigation/native';
 
 export default function DishAction({route}) {
-
-    const[data,setData] = React.useState({
+    const dispatch = useDispatch();
+    const navigation = useNavigation();
+    const actionType = route.params.action;
+    const[data,setData] = useState({
         name:"",
         imgUrl:"",
         price:null,
         rating:null
     });
 
-    const actionType = route.params.action;
-
-    React.useEffect(()=>{
+    //to prefill the data on update screen
+    useEffect(()=>{
         if(actionType == 'update'){
             const {name,imgUrl,price,rating} = route.params.dish;
             setData({
@@ -27,8 +28,6 @@ export default function DishAction({route}) {
         }
     },[])
 
-    const dispatch = useDispatch();
-    const navigation = useNavigation();
 
     const handleChange = (name,value)=>{
         setData(
@@ -65,7 +64,6 @@ export default function DishAction({route}) {
 
   return (
     <View style={styles.outerContainer}>
-      {/* <Text style={styles.heading}>{actionType === 'add' ? "Add New Dish" : "Edit Dish Data"}</Text> */}
       <View style={styles.innerContainer}>
         {data.imgUrl.length > 0 && (
           <Image

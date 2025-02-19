@@ -1,12 +1,12 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Modal, Dimensions } from 'react-native'
-import React, { useCallback } from 'react'
-import DishCard from '../components/DishCard'
-import HomeBanner from '../components/HomeBanner'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Modal } from 'react-native'
+import { useEffect,useState } from 'react'
+import { useSelector,useDispatch } from 'react-redux'
 import { clearCart } from '../redux/cartSlice'
-import { useFocusEffect } from '@react-navigation/native'
 import { fetchDishes } from '../redux/dishSlice'
+import HomeBanner from '../components/HomeBanner'
+import DishCard from '../components/DishCard'
+// import Person1 from '../components/Person1'
+// import Person2 from '../components/Person2'
 
 
 export default function HomeScreen({ navigation }) {
@@ -15,15 +15,12 @@ export default function HomeScreen({ navigation }) {
   const dishes = useSelector((state) => state.dishes);
   const totalItems = useSelector((state) => state.cart.length);
 
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(fetchDishes());
   }, [dispatch])
 
-  useFocusEffect(useCallback(() => {
-    setModalVisible(false);
-  }, []));
 
   return (
     <ScrollView
@@ -58,6 +55,9 @@ export default function HomeScreen({ navigation }) {
         }
       </View>
 
+        {/* <Person1/>
+        <Person2/> */}
+        
       <Modal
         visible={modalVisible}
         animationType='slide'
@@ -65,10 +65,7 @@ export default function HomeScreen({ navigation }) {
       >
         <TouchableOpacity style={styles.modalOuterContainer} onPress={() => setModalVisible(false)} activeOpacity={1}>
           <View style={styles.modalInnerContainer}>
-
             <View style={styles.btnContainer}>
-
-
               <TouchableOpacity onPress={() => {
                 dispatch(clearCart());
                 setModalVisible(false);
@@ -76,7 +73,11 @@ export default function HomeScreen({ navigation }) {
                 <View ><Text style={styles.clearCartBtnText}>Clear Cart</Text></View>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => navigation.navigate('CartScreen')} style={styles.viewCartBtn}>
+              <TouchableOpacity onPress={() => {
+                  setModalVisible(false);
+                  navigation.navigate('CartScreen')
+                }}
+                style={styles.viewCartBtn}>
                 <Text style={styles.clearCartBtnText}>View Cart </Text>
               </TouchableOpacity>
             </View>

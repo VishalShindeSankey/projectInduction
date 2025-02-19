@@ -16,6 +16,8 @@ export default function HomeBanner() {
       <View style={styles.userProfile}>
         <Text style={{fontSize:22,fontWeight:500,textAlign:'center',color:'green'}}>{user == 'user' ? "U":"A"}</Text>
       </View>
+
+
     </View>
   )
 }
