@@ -7,9 +7,9 @@ const PaymentResult = ({navigation}) => {
     setTimeout(()=>{
         setIsFirstFinished(true);
     },[6500])
+
   return (
     <View style={{flex:1,backgroundColor:'white'}}>
-      {/* <Text>PaymentResult</Text> */}
 
       {!isFirstFinished ? 
       <View style={{flex:1}}>
@@ -23,6 +23,7 @@ const PaymentResult = ({navigation}) => {
             </TouchableOpacity>
       </View>
         }
+        
     </View>
   )
 }

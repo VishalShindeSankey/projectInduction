@@ -6,7 +6,7 @@ import HomeScreen from './HomeScreen'
 import CartScreen from './CartScreen'
 import PaymentResult from './PaymentResult'
 import DishAction from './DishAction'
-
+import Register from './Register'
 
 import AnimationDemo from './AnimationDemo'
 import TransitionDemo from './TransitionDemo'
@@ -25,6 +25,14 @@ const AuthNavigation = () => {
               <Stack.Screen
                 name='Login'
                 component={Login}
+                options={{
+                  headerShown: false
+                }}
+              />
+
+              <Stack.Screen
+                name='Register'
+                component={Register}
                 options={{
                   headerShown: false
                 }}

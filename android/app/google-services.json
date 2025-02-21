@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "963938191278",
+    "project_id": "food-app-d39db",
+    "storage_bucket": "food-app-d39db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963938191278:android:ff4abceef946061ee72a3f",
+        "android_client_info": {
+          "package_name": "com.bioapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963938191278-89qio8jc0p6c19gt748ccqkoap08f7ik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bioapp",
+            "certificate_hash": "25ce6b2b7d84cca98a163e6888f6367e0d35f8e5"
+          }
+        },
+        {
+          "client_id": "963938191278-i4nppq73tfnvutpnn54tr5ghk56d4sie.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq3PoB2wJ3kx2o_euEIyxyp98q6d7FmJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963938191278-i4nppq73tfnvutpnn54tr5ghk56d4sie.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

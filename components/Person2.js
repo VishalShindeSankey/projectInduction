@@ -3,6 +3,7 @@ import React from 'react'
 import HighOrderFunction from './HOC'
 
 const Person2 = ({count,increaseCount}) => {
+    
   return (
     <View>
       <Text>Person2 count is {count}</Text>

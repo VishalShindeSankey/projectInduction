@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import HighOrderFunction from './HOC'
 
+
 const Person1 = ({count,increaseCount}) => {
   return (
     <View>

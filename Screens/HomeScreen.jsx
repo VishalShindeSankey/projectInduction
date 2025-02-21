@@ -5,8 +5,6 @@ import { clearCart } from '../redux/cartSlice'
 import { fetchDishes } from '../redux/dishSlice'
 import HomeBanner from '../components/HomeBanner'
 import DishCard from '../components/DishCard'
-// import Person1 from '../components/Person1'
-// import Person2 from '../components/Person2'
 
 
 export default function HomeScreen({ navigation }) {
@@ -21,7 +19,7 @@ export default function HomeScreen({ navigation }) {
     dispatch(fetchDishes());
   }, [dispatch])
 
-
+  console.log(dishes);
   return (
     <ScrollView
       stickyHeaderIndices={[1]}
@@ -54,9 +52,6 @@ export default function HomeScreen({ navigation }) {
           })
         }
       </View>
-
-        {/* <Person1/>
-        <Person2/> */}
         
       <Modal
         visible={modalVisible}
